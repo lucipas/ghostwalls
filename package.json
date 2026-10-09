@@ -13,6 +13,10 @@
   "dependencies": {
     "@clerk/clerk-expo": "^2.2.0",
     "expo": "~52.0.0",
+    "expo-auth-session": "~6.0.0",
+    "expo-constants": "~17.0.0",
+    "expo-linking": "~7.0.0",
+    "expo-web-browser": "~14.0.0",
     "expo-camera": "~16.0.0",
     "expo-location": "~18.0.0",
     "expo-image-picker": "~16.0.0",
@@ -20,7 +24,7 @@
     "expo-secure-store": "~14.0.0",
     "expo-build-properties": "~0.13.2",
     "react": "18.3.1",
-    "react-native": "0.76.5",
+    "react-native": "0.76.9",
     "react-native-view-shot": "~4.0.3"
   },
   "devDependencies": {
