@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Ghost Walls",
+    "slug": "ghostwalls",
+    "version": "0.1.0",
+    "scheme": "ghostwalls",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": { "image": "./assets/splash.png", "backgroundColor": "#0a0a0f" },
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": false, "bundleIdentifier": "com.ghostwalls.app" },
+    "android": {
+      "package": "com.ghostwalls.app",
+      "versionCode": 1,
+      "adaptiveIcon": { "foregroundImage": "./assets/adaptive-icon.png", "backgroundColor": "#0a0a0f" },
+      "permissions": ["CAMERA", "ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
+      "config": { "googleMaps": { "apiKey": "GOOGLE_MAPS_KEY" } }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-camera",
+      "expo-location",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 26,
+            "usesCleartextTraffic": false,
+            "extraMavenRepos": [],
+            "permissions": ["CAMERA", "ACCESS_FINE_LOCATION"]
+          }
+        }
+      ]
+    ],
+    "experiments": { "typedRoutes": true },
+    "extra": { "apiUrl": "https://api.ghostwalls.example", "eas": { "projectId": "SET_IN_EAS_JSON" } }
+  }
+}

@@ -1,0 +1,40 @@
+openapi: 3.1.0
+info: { title: Ghost Walls API, version: 0.1.0, description: 'LUC-166 contract: Hono/FastAPI on Fly.io, Postgres+PostGIS, pgvector, R2/S3, Clerk.' }
+servers: [{ url: 'https://api.ghostwalls.example' }]
+paths:
+  /ghosts:
+    get:
+      summary: Geo-radius query
+      parameters:
+        - { name: lat, in: query, required: true, schema: { type: number } }
+        - { name: lng, in: query, required: true, schema: { type: number } }
+        - { name: radius, in: query, schema: { type: integer, default: 500 } }
+      responses: { '200': { description: ghosts } }
+    post:
+      summary: Plant a ghost (30-day expiry + planting limits enforced server-side, LUC-170)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [anchor, assetUploadId]
+              properties:
+                anchor:
+                  type: object
+                  required: [latitude, longitude, heading]
+                  properties:
+                    latitude: { type: number }
+                    longitude: { type: number }
+                    altitude: { type: [number, 'null'] }
+                    heading: { type: number }
+                    pitch: { type: number }
+                    accuracyM: { type: [number, 'null'] }
+                assetUploadId: { type: string }
+                tags: { type: array, items: { type: string } }
+                embedding: { type: array, items: { type: number }, description: 'DINOv3/CLIP embedding for LUC-168' }
+      responses: { '201': { description: planted ghost } }
+  /uploads:
+    post:
+      summary: Request R2/S3 upload URL
+      responses: { '200': { description: '{ uploadId, putUrl }' } }
