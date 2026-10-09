@@ -30,8 +30,8 @@ jobs:
           test -f android/settings.gradle || test -f android/settings.gradle.kts || (echo "ERROR: expo prebuild did not generate android/settings.gradle" && exit 1)
           test -f android/gradlew || (echo "ERROR: android/gradlew missing" && exit 1)
           chmod +x android/gradlew
-      - run: ./android/gradlew :app:assembleRelease --no-daemon --stacktrace
-        working-directory: ${{ github.workspace }}
+      - run: ./gradlew :app:assembleRelease --no-daemon --stacktrace
+        working-directory: ${{ github.workspace }}/android
       - uses: actions/upload-artifact@v4
         with: { name: ghostwalls-android, path: android/app/build/outputs/apk/release/*.apk }
       # Alternative: EAS — uncomment if using Expo cloud builds:
